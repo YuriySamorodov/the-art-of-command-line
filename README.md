@@ -553,19 +553,49 @@ A few examples of piecing together commands:
 
 These are items relevant *only* on macOS.
 
+- Default Terminal in MacOS is `zsh`. Although most of the commands listed in this guide will work just fine, please keep in mind some `bash` scripts may through errors or produce unexpected results.
+
 - Package management with `brew` (Homebrew) and/or `port` (MacPorts). These can be used to install on macOS many of the above commands.
 
-- Copy output of any command to a desktop app with `pbcopy` and paste input from one with `pbpaste`.
+- Copy output of any command to a file with `pbcopy < file.txt` or `cat file.txt | pbcopy`
+
+- Paste input from one with `pbpaste`.
+
+- Count items in clipboard: `pbpaste | wc -l`
+
+- Strip formatting from clipboard: `pbpaste | pbcopy`.
 
 - To enable the Option key in macOS Terminal as an alt key (such as used in the commands above like **alt-b**, **alt-f**, etc.), open Preferences -> Profiles -> Keyboard and select "Use Option as Meta key".
 
-- To open a file with a desktop app, use `open` or `open -a /Applications/Whatever.app`.
+- To open a file with a desktop app, use `open -a "Application Name"` or `open -a /Applications/Whatever.app`.
+
+- To reveal a folder in `Finder`, pleae use `open -R /path/to/file`
+
+- Show/hide hidden files in Finder: `defaults write com.apple.finder AppleShowAllFiles YES && killall Finder`.
 
 - Spotlight: Search files with `mdfind` and list metadata (such as photo EXIF info) with `mdls`.
 
 - Be aware macOS is based on BSD Unix, and many commands (for example `ps`, `ls`, `tail`, `awk`, `sed`) have many subtle variations from Linux, which is largely influenced by System V-style Unix and GNU tools. You can often tell the difference by noting a man page has the heading "BSD General Commands Manual." In some cases GNU versions can be installed, too (such as `gawk` and `gsed` for GNU awk and sed). If writing cross-platform Bash scripts, avoid such commands (for example, consider Python or `perl`) or test carefully.
 
 - To get macOS release information, use `sw_vers`.
+
+- Get detailed hardware info with `system_profiler` and `system_profiler SPHardwareDataType for Mac` specs.
+
+- Check battery status with `pmset -g batt` and power management settings with `pmset -g`.
+
+- View system logs with `log show` or stream them in real-time with `log stream`.
+
+- List all running applications with `osascript -e 'tell application "System Events" to get name of every process whose background only is false'`.
+Force quit applications from terminal with `killall [AppName]` or `pkill`.
+
+- Flush DNS cache with `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`.
+
+- View active network connections with `netstat -an` or `lsof -i`.
+
+- Get current Wi-Fi network with `networksetup -getairportnetwork en0`.
+
+- Scan available Wi-Fi networks: `/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -s`.
+
 
 ## Windows only
 
