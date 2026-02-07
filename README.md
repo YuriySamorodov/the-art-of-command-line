@@ -586,7 +586,7 @@ These are items relevant *only* on macOS.
 - View system logs with `log show` or stream them in real-time with `log stream`.
 
 - List all running applications with `osascript -e 'tell application "System Events" to get name of every process whose background only is false'`.
-Force quit applications from terminal with `killall [AppName]` or `pkill`.
+- Force quit applications from terminal with `killall [AppName]` or `pkill`.
 
 - Flush DNS cache with `sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder`.
 
